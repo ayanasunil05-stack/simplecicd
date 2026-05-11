@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Microfinance App</title>
+</head>
+
+<body style="background:#1e3c72;color:white;text-align:center;font-family:Arial">
+
+<h1>💰 Microfinance Loan Predictor</h1>
+
+<input id="a" placeholder="Applicant Income"><br><br>
+<input id="c" placeholder="Co-applicant Income"><br><br>
+<input id="l" placeholder="Loan Amount"><br><br>
+<input id="t" placeholder="Total Income"><br><br>
+
+<button onclick="go()">Check Eligibility</button>
+
+<h2 id="out"></h2>
+
+<script>
+function go(){
+fetch('/predict',{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({
+a:a.value,
+c:c.value,
+l:l.value,
+t:t.value
+})
+})
+.then(r=>r.json())
+.then(d=>out.innerText=d.result)
+}
+</script>
+
+</body>
+</html>
